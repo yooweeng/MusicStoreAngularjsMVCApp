@@ -38,6 +38,9 @@ namespace MusicStoreAngularjsMVCApp
 
             bundles.Add(new StyleBundle("~/bundles/dropzonecss").Include(
                       "~/Library/dropzone@5/dropzone.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
+                      "~/Scripts/angular.min.js"));
         }
     }
 }
