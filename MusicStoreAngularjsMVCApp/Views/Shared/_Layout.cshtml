@@ -3,42 +3,57 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/chosencss")
+    @Styles.Render("~/bundles/dropzonecss")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark">
+        <div class="container-fluid">
+            @Html.ActionLink("LetsMovie", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-white" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.Partial("_NavbarPartialAdmin")
+                    }
+                    else if (User.IsInRole("Seller"))
+                    {
+                        @Html.Partial("_NavbarPartialSeller")
+                    }
+                    else if (User.IsInRole("Customer"))
+                    {
+                        @Html.Partial("_NavbarPartialCustomer")
+                    }
+                }
+                else
+                {
+                    @Html.Partial("_NavbarPartialDefault")
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </nav>
+    <div class="container-fluid px-0">
+        <div style="min-height: 561px;">
+            @RenderBody()
+        </div>
+        <footer class="bg-dark text-white px-4 py-5">
+            <p>&copy; @DateTime.Now.Year - LetsMovie</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/chosenjs")
+    @Scripts.Render("~/bundles/dropzonejs")
     @RenderSection("scripts", required: false)
 </body>
 </html>
