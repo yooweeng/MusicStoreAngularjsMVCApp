@@ -243,6 +243,29 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Library\chosen_v1.8.7\chosen-sprite%402x.png" />
+    <Content Include="Library\chosen_v1.8.7\chosen-sprite.png" />
+    <Content Include="Library\chosen_v1.8.7\chosen.css" />
+    <Content Include="Library\chosen_v1.8.7\chosen.jquery.js" />
+    <Content Include="Library\chosen_v1.8.7\chosen.jquery.min.js" />
+    <Content Include="Library\chosen_v1.8.7\chosen.min.css" />
+    <Content Include="Library\chosen_v1.8.7\chosen.proto.js" />
+    <Content Include="Library\chosen_v1.8.7\chosen.proto.min.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\chosen.png" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\init.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\init.proto.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\jquery-1.12.4.min.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\jquery-3.2.1.min.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\oss-credit.png" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\prism.css" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\prism.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\prototype-1.7.0.0.js" />
+    <Content Include="Library\chosen_v1.8.7\docsupport\style.css" />
+    <Content Include="Library\chosen_v1.8.7\index.html" />
+    <Content Include="Library\chosen_v1.8.7\index.proto.html" />
+    <Content Include="Library\chosen_v1.8.7\options.html" />
+    <Content Include="Library\dropzone%405\dropzone.min.css" />
+    <Content Include="Library\dropzone%405\dropzone.min.js" />
     <Content Include="MovieCover\14\AAAABVQQukGlwU2MPqnW_M5NZiZ-GPkMf7Z_dB-t3zxNOALbZ1QPJZA3zgB8tmKKG-CRM7XD_jULqFBuVBlARq2boU-0vfn6ZhDCSvI.jpg" />
     <Content Include="MovieCover\24\AAAABUhx0Q6VEw3o50BGuTs_bOBgEAGthZiPIqRU9vOwceKNoj2iodtEkw6mbTlbhia43kBL6m787NqnD3oMz-ZHsoNGfqQajT9_i6yW6_rgABLH0FYK1Szj9AZNRTrvrDDh3ToN.jpg" />
     <Content Include="MovieCover\25\AAAABTP_8NRw9Dglwjk51xYEHLflnOiEBR5Il4qqzdQKcC7rXozuR5_RuOLfPC4oc_WpC6Mi45sKVa5MKA5-e75QokRV36LfDLOBFzA.jpg" />
@@ -296,6 +319,8 @@
     <Content Include="MusicStoreAngularjsMVCAppEntities.edmx.diagram">
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Library\chosen_v1.8.7\composer.json" />
+    <Content Include="Library\chosen_v1.8.7\LICENSE.md" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />

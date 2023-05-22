@@ -20,11 +20,24 @@ namespace MusicStoreAngularjsMVCApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.bundle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/Site.css",
+                      "~/Content/fontawesome-free-6.4.0-web/css/all.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/chosenjs").Include(
+                      "~/Library/chosen_v1.8.7/chosen.jquery.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/chosencss").Include(
+                      "~/Library/chosen_v1.8.7/chosen.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzonejs").Include(
+                      "~/Library/dropzone@5/dropzone.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/dropzonecss").Include(
+                      "~/Library/dropzone@5/dropzone.min.css"));
         }
     }
 }
