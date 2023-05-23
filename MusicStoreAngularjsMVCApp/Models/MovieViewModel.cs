@@ -14,5 +14,6 @@ namespace MusicStoreAngularjsMVCApp.Models
         public string ImageUrl { get; set; }
         public int ReleasedYear { get; set; }
         public IEnumerable<string> GenreTypes { get; set; }
+        public SellerViewModel Seller { get; set; }
     }
 }

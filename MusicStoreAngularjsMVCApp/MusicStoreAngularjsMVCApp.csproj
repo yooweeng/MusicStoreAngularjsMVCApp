@@ -172,6 +172,7 @@
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Customer.cs">
@@ -190,6 +191,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\SellerViewModel.cs" />
     <Compile Include="Models\UserTypeModel.cs" />
     <Compile Include="Movie.cs">
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.tt</DependentUpon>
@@ -2344,7 +2346,9 @@
     <Content Include="Scripts\angular-chosen\angular-chosen.js" />
     <Content Include="Scripts\angular-chosen\angular-chosen.min.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\guestIndex.controller.js" />
+    <Content Include="Scripts\app\customer\customerIndex.controller.js" />
+    <Content Include="Scripts\app\customer\customerMovieDetail.controller.js" />
+    <Content Include="Scripts\app\guest\guestIndex.controller.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -2481,6 +2485,8 @@
     <Content Include="Views\Shared\_NavbarPartialDefault.cshtml" />
     <Content Include="Views\Shared\_NavbarPartialSeller.cshtml" />
     <Content Include="Views\Account\Error.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\MovieDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
