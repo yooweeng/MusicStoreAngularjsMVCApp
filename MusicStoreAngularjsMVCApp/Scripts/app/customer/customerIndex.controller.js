@@ -1,6 +1,6 @@
 ﻿angular.module('app', ['angular.chosen'])
 
-.controller('movieCtrl', function ($http) {
+.controller('customerIndexCtrl', function ($http) {
     let vm = this;
 
     $http({

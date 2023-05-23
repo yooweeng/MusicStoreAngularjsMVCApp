@@ -3,18 +3,18 @@
 }
 
 @section Scripts {
-    <script type="text/javascript" src="~/Scripts/app/guestIndex.controller.js"></script>
+    <script type="text/javascript" src="~/Scripts/app/guest/guestIndex.controller.js"></script>
 }
 
-<div ng-app="app" ng-controller="movieCtrl as mc" class="p-5 bg-secondary" style="min-height: 561px;">
+<div ng-app="app" ng-controller="guestIndexCtrl as gc" class="p-5 bg-secondary" style="min-height: 561px;">
     <h2>Movies / Products</h2>
     <div class="text-white mt-3 me-5">Filter:<i class="fa-solid fa-filter" style="color: #ffffff;"></i></div>
     <p>selectedGenreType: {{selectedGenreTypes}}</p>
-    <select multiple chosen ng-model="selectedGenreTypes" ng-options="genre.GenreType for genre in mc.genres"></select>
+    <select multiple chosen ng-model="selectedGenreTypes" ng-options="genre.GenreType for genre in gc.genres"></select>
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div id="cardMovie{{ movie.Id }}" class="col-sm-7 col-md-4 col-lg-4 col-xxl-3 card bg-dark text-white rounded-5 card-movie m-5 p-4" ng-repeat="movie in mc.movies">
+            <div id="cardMovie{{ movie.Id }}" class="col-sm-7 col-md-4 col-lg-4 col-xxl-3 card bg-dark text-white rounded-5 card-movie m-5 p-4" ng-repeat="movie in gc.movies">
                 <img ng-src="{{ movie.ImageUrl }}" class="card-img-top rounded-3">
                 <div class="card-body d-flex flex-column justify-content-between pb-0">
                     <div class="mb-4">
