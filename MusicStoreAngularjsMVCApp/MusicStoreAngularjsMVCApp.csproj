@@ -2341,6 +2341,8 @@
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.edmx</DependentUpon>
       <LastGenOutput>MusicStoreAngularjsMVCAppEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\angular-chosen\angular-chosen.js" />
+    <Content Include="Scripts\angular-chosen\angular-chosen.min.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\guestIndex.controller.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -2433,6 +2435,10 @@
     <Content Include="Content\fontawesome-free-6.4.0-web\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\fontawesome-free-6.4.0-web\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\fontawesome-free-6.4.0-web\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Scripts\angular-chosen\.gitattributes" />
+    <Content Include="Scripts\angular-chosen\.gitignore" />
+    <Content Include="Scripts\angular-chosen\license.md" />
+    <Content Include="Scripts\angular-chosen\README.md" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />

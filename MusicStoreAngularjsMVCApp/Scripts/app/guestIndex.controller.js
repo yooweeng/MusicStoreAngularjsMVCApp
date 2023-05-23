@@ -1,4 +1,4 @@
-﻿angular.module('app', [])
+﻿angular.module('app', ['angular.chosen'])
 
 .controller('movieCtrl', function ($http) {
     let vm = this;
