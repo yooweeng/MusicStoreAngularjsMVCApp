@@ -7,8 +7,8 @@ namespace MusicStoreAngularjsMVCApp.Models
 {
     public class GuestCustomerIndexViewModel
     {
-        public IEnumerable<Movie> Movies { get; set; }
-        public IEnumerable<Genre> Genres { get; set; }
+        public IEnumerable<MovieViewModel> Movies { get; set; }
+        public IEnumerable<GenreViewModel> Genres { get; set; }
         public IEnumerable<int> SelectedGenresId { get; set; }
         public IEnumerable<MovieIdGenreIdModel> MovieIdGenreIds { get; set; }
     }

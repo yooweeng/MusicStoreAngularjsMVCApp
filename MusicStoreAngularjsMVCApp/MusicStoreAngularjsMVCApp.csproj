@@ -173,6 +173,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.tt</DependentUpon>
     </Compile>
@@ -184,10 +185,12 @@
     </Compile>
     <Compile Include="Models\AddEditMovieViewModel.cs" />
     <Compile Include="Models\AdminIndexApprovalListViewModel.cs" />
+    <Compile Include="Models\GenreViewModel.cs" />
     <Compile Include="Models\GuestCustomerIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MovieIdGenreIdModel.cs" />
+    <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\UserTypeModel.cs" />
     <Compile Include="Movie.cs">
@@ -285,6 +288,7 @@
       <LastGenOutput>MusicStoreAngularjsMVCAppEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\guestIndex.controller.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -366,6 +370,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Movies\" />
+    <Folder Include="Views\Movie\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
