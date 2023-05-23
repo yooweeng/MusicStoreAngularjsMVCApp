@@ -9,7 +9,7 @@
 <div ng-app="app" ng-controller="movieCtrl as mc" class="p-5 bg-secondary" style="min-height: 561px;">
     <h2>Movies / Products</h2>
     <div class="text-white mt-3 me-5">Filter:<i class="fa-solid fa-filter" style="color: #ffffff;"></i></div>
-    <p>selectedGenreType: {{selectedGenreType}}</p>
+    <p>selectedGenreType: {{selectedGenreTypes}}</p>
     <select ng-model="selectedGenreTypes" ng-options="genre.GenreType for genre in mc.genres" multiple></select>
 
     <div class="container-fluid">

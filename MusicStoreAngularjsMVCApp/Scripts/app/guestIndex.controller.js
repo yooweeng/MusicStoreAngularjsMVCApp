@@ -1,6 +1,8 @@
 ﻿angular.module('app', [])
+
 .controller('movieCtrl', function ($http) {
     let vm = this;
+
     $http({
         method: "GET",
         url: "/Movies"

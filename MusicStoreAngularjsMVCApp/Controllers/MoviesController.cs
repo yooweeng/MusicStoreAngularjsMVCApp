@@ -20,7 +20,6 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             List<MovieViewModel> movies = new List<MovieViewModel>();
             List<GenreViewModel> genres = new List<GenreViewModel>();
             List<MovieGenre> movieGenres = db.MovieGenres.ToList();
-            List<MovieIdGenreIdModel> movieIdGenreIds = new List<MovieIdGenreIdModel>();
 
             foreach (Movie movie in db.Movies)
             {
@@ -53,26 +52,18 @@ namespace MusicStoreAngularjsMVCApp.Controllers
                 });
             }
 
-            foreach (MovieGenre movieGenre in movieGenres)
-            {
-                movieIdGenreIds.Add(new MovieIdGenreIdModel()
-                {
-                    MovieId = movieGenre.MovieId,
-                    GenreId = movieGenre.GenreId
-                });
-            }
-
-            GuestCustomerIndexViewModel model = new GuestCustomerIndexViewModel()
-            {
-                Movies = movies,
-                Genres = genres,
-                MovieIdGenreIds = movieIdGenreIds
-            };
-
             status = true;
             statusMessage = "Successfully retrive list of movie";
 
-            return Json(new { Status = status, StatusMessage = statusMessage, Data = model }, JsonRequestBehavior.AllowGet);
+            return Json(
+                new { 
+                        Status = status,
+                        StatusMessage = statusMessage, 
+                        Data = new { 
+                            Movies = movies,
+                            Genres = genres
+                        } 
+                }, JsonRequestBehavior.AllowGet);
         }
     }
 }
