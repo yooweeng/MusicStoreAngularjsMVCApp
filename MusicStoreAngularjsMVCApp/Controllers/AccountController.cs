@@ -39,15 +39,18 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             }
 
             var user = await userManager.FindByNameAsync(model.Email);
-            if (user.UserType == UserType.Seller)
+            if (user != null)
             {
-                ApprovalList sellerInApprovalList = db.ApprovalLists.Where(seller => seller.SellerEmail == model.Email).SingleOrDefault();
-                // if no record of seller in approval list or
-                // the status is other than 'Approved'
-                if (sellerInApprovalList == null || sellerInApprovalList.Status != 1)
+                if (user.UserType == UserType.Seller)
                 {
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    ApprovalList sellerInApprovalList = db.ApprovalLists.Where(seller => seller.SellerEmail == model.Email).SingleOrDefault();
+                    // if no record of seller in approval list or
+                    // the status is other than 'Approved'
+                    if (sellerInApprovalList == null || sellerInApprovalList.Status != 1)
+                    {
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                    }
                 }
             }
 
