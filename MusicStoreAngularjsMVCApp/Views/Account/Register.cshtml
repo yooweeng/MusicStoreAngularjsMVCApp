@@ -1,55 +1,81 @@
-﻿@model MusicStoreAngularjsMVCApp.Models.RegisterViewModel
-@{
+﻿@{
     ViewBag.Title = "Register";
 }
 
-<div class="p-5" style="display: flex; flex-direction: column; align-items: center;">
+<div ng-app="" class="p-5" style="display: flex; flex-direction: column; align-items: center;">
     <h2 class="mb-4">@ViewBag.Title</h2>
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
+    <ul>
+        <li ng-show="registerForm.Firstname.$touched && registerForm.Firstname.$invalid" class="text-danger">
+            Please provide a valid firstname.
+        </li>
+        <li ng-show="registerForm.Lastname.$touched && registerForm.Lastname.$invalid" class="text-danger">
+            Please provide a valid lastname.
+        </li>
+        <li ng-show="registerForm.Address.$touched && registerForm.Address.$invalid" class="text-danger">
+            Please provide a valid address.
+        </li>
+        <li ng-show="registerForm.PhoneNumber.$touched && registerForm.PhoneNumber.$invalid" class="text-danger">
+            Please provide a valid phone number.
+        </li>
+        <li ng-show="registerForm.Email.$invalid" class="text-danger">
+            Please provide a valid email.
+        </li>
+        <li ng-show="registerForm.Password.$touched && registerForm.Password.$invalid" class="text-danger">
+            Please provide a valid password.
+        </li>
+        <li ng-show="registerForm.ConfirmPassword.$touched && registerForm.ConfirmPassword.$invalid" class="text-danger">
+            Please provide a valid confirm password.
+        </li>
+        <li ng-show="Password != ConfirmPassword" class="text-danger">
+            The password and confirmation password do not match.
+        </li>
+    </ul>
+    <form class="form-horizontal" action="/Account/Register" method="post" name="registerForm" autocomplete="on">
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="container">
             <div class="row">
                 <div class="col mb-3 ps-0">
-                    @Html.LabelFor(m => m.Firstname, new { @class = "ms-1 mb-1" })
-                    @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
+                    <label class="ms-1 mb-1">Firstname</label>
+                    <input ng-model="Firstname" class="form-control" name="Firstname" type="text" required />
                 </div>
                 <div class="col mb-3 pe-0">
-                    @Html.LabelFor(m => m.Lastname, new { @class = "ms-1 mb-1" })
-                    @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control" })
+                    <label class="ms-1 mb-1">Lastname</label>
+                    <input ng-model="Lastname" class="form-control" name="Lastname" type="text" required />
                 </div>
             </div>
             <div class="row mb-3">
-                @Html.LabelFor(m => m.Address, new { @class = "ms-1 mb-1 px-0" })
-                @Html.TextAreaFor(m => m.Address, 3, 20, new { @class = "form-control" })
+                <label class="ms-1 mb-1 px-0">Address</label>
+                <textarea ng-model="Address" class="form-control" name="Address" rows="3" required></textarea>
             </div>
             <div class="row mb-3">
-                @Html.LabelFor(m => m.PhoneNumber, new { @class = "ms-1 mb-1 px-0" })
-                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                <label class="ms-1 mb-1 px-0">Phone Number (format: 0xxxxxxxxx)</label>
+                <input ng-model="PhoneNumber" class="form-control" name="PhoneNumber" type="text" required />
             </div>
             <div class="row mb-3">
-                @Html.LabelFor(m => m.Email, new { @class = "ms-1 mb-1 px-0" })
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                <label class="ms-1 mb-1 px-0">Email</label>
+                <input ng-model="Email" class="form-control" name="Email" type="email" />
             </div>
             <div class="row mb-3">
-                @Html.LabelFor(m => m.Password, new { @class = "control-label ms-1 mb-1 px-0" })
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                <label class="control-label ms-1 mb-1 px-0">Password</label>
+                <input ng-model="Password" class="form-control" name="Password" type="password" required />
             </div>
             <div class="row mb-3">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label ms-1 mb-1 px-0" })
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                <label class="control-label ms-1 mb-1 px-0">Confirm Password</label>
+                <input ng-model="ConfirmPassword" class="form-control" type="password" required />
             </div>
             <div class="row dropdown mb-4">
-                @Html.LabelFor(m => m.UserType, new { @class = "ms-1 mb-1 px-0" })
-                @Html.DropDownListFor(m => m.UserType, new SelectList(new string[2] { "Customer", "Seller" }), new { @class = "form-select" })
+                <label class="ms-1 mb-1 px-0">User Type</label>
+                <select class="form-select" name="UserType">
+                    <option>Customer</option>
+                    <option>Seller</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" style="align-self: center;" value="Register" />
         </div>
-    }
+    </form>
 </div>
 
 @section Scripts {
