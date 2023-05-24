@@ -1,4 +1,4 @@
-﻿angular.module('app', ['angular.chosen')
+﻿angular.module('app')
 
     .controller('customerMovieDetailCtrl', function ($scope, $http) {
         // get id

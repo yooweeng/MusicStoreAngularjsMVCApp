@@ -6,16 +6,10 @@
     <script type="text/javascript" src="~/Scripts/app/guest/guestIndex.controller.js"></script>
 }
 
-<div ng-app="app" ng-controller="guestIndexCtrl" ng-init="test=[{Id:0,GenreType:'Adventure'},{Id:1,GenreType:'Action'},{Id:2,GenreType:'Romance'},{Id:3,GenreType:'Fiction'},{Id:4,GenreType:'Horror'},{Id:8,GenreType:'Kids'},{Id:9,GenreType:'Test'}]" class="p-5 bg-secondary" style="min-height: 561px;">
+<div ng-app="app" ng-controller="guestIndexCtrl" class="p-5 bg-secondary" style="min-height: 561px;">
     <h2>Movies / Products</h2>
     <div class="text-white mt-3 me-5">Filter:<i class="fa-solid fa-filter" style="color: #ffffff;"></i></div>
-    <p>selectedGenreType: {{selectedGenreTypes}}</p>
-    <p>test:</p>
-    <p>{{test}}</p>
-    <p>genres:</p>
-    <p>{{genres}}</p>
-    <select multiple chosen ng-model="selectedTests" ng-options="genre.GenreType for genre in test"></select>
-    <select multiple chosen ng-model="selectedGenreTypes" ng-options="genre.GenreType for genre in genres"></select>
+    <select multiple chosen ng-model="selectedGenreTypes" ng-options="genre.GenreType for genre in genres" style="min-width: 280px;"></select>
 
     <div class="container-fluid">
         <div class="row justify-content-center">

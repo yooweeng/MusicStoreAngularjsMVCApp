@@ -31,11 +31,10 @@ namespace MusicStoreAngularjsMVCApp
                       "~/Library/chosen_v1.8.7/chosen.jquery.min.js"));
 
             bundles.Add(new StyleBundle("~/bundles/chosencss").Include(
-                      "~/Library/chosen_v1.8.7/chosen.min.css",
-                      "~/Library/chosen_v1.8.7/chosen-sprite.png"));
+                      "~/Library/chosen_v1.8.7/chosen.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularchosenjs").Include(
-                      "~/Scripts/angular-chosen/angular-chosen.js"));
+                      "~/Scripts/angular-chosen-1.4.0/dist/angular-chosen.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/dropzonejs").Include(
                       "~/Library/dropzone@5/dropzone.min.js"));

@@ -2343,8 +2343,33 @@
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.edmx</DependentUpon>
       <LastGenOutput>MusicStoreAngularjsMVCAppEntities.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\angular-chosen\angular-chosen.js" />
-    <Content Include="Scripts\angular-chosen\angular-chosen.min.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\chosen-spinner.css" />
+    <Content Include="Scripts\angular-chosen-1.4.0\chosen.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\dist\angular-chosen.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\dist\angular-chosen.min.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\example\choose-a-beer.png" />
+    <Content Include="Scripts\angular-chosen-1.4.0\example\index.html" />
+    <Content Include="Scripts\angular-chosen-1.4.0\example\index.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\gulpfile.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\spinner.gif" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\base.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenAttrSpec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\allowSingleDeselected.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\disableSearch.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\disableSearchThreshold.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\inheritSelectClasses.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\maxShownResults.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\noResultsText.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\placeholderTextMultiple.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\placeholderTextSingle.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\searchContains.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\chosenOptions\width.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\form.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\issues\179-ng-if-breaks-inherit-select-classes.spec.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\support\caseConvertFilter.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\support\chosenSelectHelper.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\support\karma.conf.js" />
+    <Content Include="Scripts\angular-chosen-1.4.0\test\support\specHelper.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\customer\customerIndex.controller.js" />
     <Content Include="Scripts\app\customer\customerMovieDetail.controller.js" />
@@ -2439,10 +2464,14 @@
     <Content Include="Content\fontawesome-free-6.4.0-web\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\fontawesome-free-6.4.0-web\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\fontawesome-free-6.4.0-web\webfonts\fa-v4compatibility.woff2" />
-    <Content Include="Scripts\angular-chosen\.gitattributes" />
-    <Content Include="Scripts\angular-chosen\.gitignore" />
-    <Content Include="Scripts\angular-chosen\license.md" />
-    <Content Include="Scripts\angular-chosen\README.md" />
+    <Content Include="Scripts\angular-chosen-1.4.0\.gitignore" />
+    <Content Include="Scripts\angular-chosen-1.4.0\.npmignore" />
+    <Content Include="Scripts\angular-chosen-1.4.0\bower.json" />
+    <Content Include="Scripts\angular-chosen-1.4.0\example\index.coffee" />
+    <Content Include="Scripts\angular-chosen-1.4.0\LICENSE" />
+    <Content Include="Scripts\angular-chosen-1.4.0\package.json" />
+    <Content Include="Scripts\angular-chosen-1.4.0\README.md" />
+    <Content Include="Scripts\angular-chosen-1.4.0\src\chosen.coffee" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />
