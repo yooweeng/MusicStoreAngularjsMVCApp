@@ -28,7 +28,6 @@
             });
 
             $scope.filteredMovies = filteredArr;
-            return;
         }
     };
 });
