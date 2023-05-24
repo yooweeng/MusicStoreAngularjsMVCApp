@@ -1,14 +1,12 @@
 ﻿angular.module('app', ['angular.chosen'])
 
-.controller('customerIndexCtrl', function ($http) {
-    let vm = this;
-
+.controller('customerIndexCtrl', function ($scope, $http) {
     $http({
         method: "GET",
         url: "/Movies"
     }).then(function success(response) {
-        vm.genres = response.data.Data.Genres;
-        vm.movies = response.data.Data.Movies;
+        $scope.genres = response.data.Data.Genres;
+        $scope.movies = response.data.Data.Movies;
     }, function error(response) {
         console.error(response.statusText);
     });

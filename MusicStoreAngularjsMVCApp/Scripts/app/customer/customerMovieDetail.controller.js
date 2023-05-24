@@ -1,14 +1,14 @@
-﻿angular.module('app', ['angular.chosen'])
+﻿angular.module('app', ['angular.chosen')
 
-.controller('customerMovieDetailCtrl', function ($scope, $http) {
-    let vm = this;
+    .controller('customerMovieDetailCtrl', function ($scope, $http) {
+        // get id
 
-    $http({
-        method: "GET",
-        url: "/Movies?id=24"
-    }).then(function success(response) {
-        vm.movie = response.data.Movie;
-    }, function error(response) {
-        console.error(response.statusText);
+        $http({
+            method: "GET",
+            url: "/Movies?id=24"
+        }).then(function success(response) {
+            $scope.movie = response.data.Movie;
+        }, function error(response) {
+            console.error(response.statusText);
+        });
     });
-});
