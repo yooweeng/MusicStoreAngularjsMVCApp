@@ -1,6 +1,6 @@
 ﻿angular.module('app', ['localytics.directives'])
 
-.controller('customerIndexCtrl', function ($scope, $http) {
+.controller('customerIndexCtrl', ['$scope', '$http', function ($scope, $http) {
     $http({
         method: "GET",
         url: "/Movies"
@@ -30,4 +30,4 @@
             $scope.filteredMovies = filteredArr;
         }
     };
-});
+}]);
