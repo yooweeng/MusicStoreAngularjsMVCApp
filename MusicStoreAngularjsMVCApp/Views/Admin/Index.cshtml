@@ -1,99 +1,20 @@
-﻿@model IEnumerable<MusicStoreAngularjsMVCApp.Models.AdminIndexApprovalListViewModel>
-
-@{
+﻿@{
     ViewBag.Title = "Admin Home";
 }
 
 @section Scripts
 {
-    <script>
-        const approvalList = @Html.Raw(Json.Encode(Model));
-        const statusMapping = ['Pending', 'Approve', 'Reject'];
-
-        $(document).ready(function () {
-            filterListByCriteria(-1);
-        });
-
-        function filterListByCriteria(filterCriteria) {
-            let filteredList = approvalList.filter(item => { return item.Status === filterCriteria });
-            if (filterCriteria === -1) {
-                filteredList = approvalList;
-            }
-
-            $('.filter-btn')
-                .removeClass('btn-dark')
-                .addClass('btn-secondary');
-            $('#button' + filterCriteria)
-                .removeClass('btn-secondary')
-                .addClass('btn-dark');
-            $('.list-item').remove();
-            for (let i = 0; i < filteredList.length; i++) {
-                $('#listBody').append(
-                    '<tr class="list-item">' +
-                        '<td>' + filteredList[i].SellerFname + '</td>' +
-                        '<td>' + filteredList[i].SellerLname + '</td>' +
-                        '<td>' + filteredList[i].Address + '</td>' +
-                        '<td>' + filteredList[i].PhoneNumber + '</td>' +
-                        '<td>' + statusMapping[filteredList[i].Status] + '</td>' +
-                        '<td id="listItemAction' + i +'"></td>' +
-                    '</tr>'
-                );
-                if (filterCriteria === 0) {
-                    $('#listItemAction'+i).append(
-                        '<button class="btn btn-success btn-sm rounded-circle me-3" type="button" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Approve`,' + filteredList[i].Id + ', ' + filterCriteria + ')">' +
-                            '<i class="fa-solid fa-check" style="color: #ffffff;"></i>' +
-                        '</button>' +
-                        '<button class="btn btn-danger btn-sm rounded-circle" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Reject`,' + filteredList[i].Id + ', ' + filterCriteria + ')">' +
-                            '<i class="fa-sharp fa-solid fa-xmark" style="color: #ffffff;"></i>' +
-                        '</button>'
-                    )
-                }
-            }
-        }
-
-        function changeActionButtonInModal(action, id, filteredCriteria) {
-            $('#actionButton')
-                .html(action)
-                .off().on('click', () => {
-                    $.ajax({
-                        url: '/Admin/' + action + '/' + id,
-                        type: 'POST',
-                        success: function (data) {
-                            approvalList.forEach(item => {
-                                if (item.Id == id) {
-                                    item.Status = (action === 'Approve') ? 1 : 2;
-                                }
-                            });
-                            filterListByCriteria(filteredCriteria);
-                        },
-                        error: function (error) {
-                            console.error(error);
-                        }
-                    })
-                })
-
-            if (action === 'Approve') {
-                $('#actionButton')
-                    .addClass('btn-success')
-                    .removeClass('btn-danger')
-            }
-            else if (action === 'Reject') {
-                $('#actionButton')
-                    .addClass('btn-danger')
-                    .removeClass('btn-success')
-            }
-        }
-    </script>
+    @Scripts.Render("~/bundles/adminIndex")
 }
 
-<div class="p-5">
+<div ng-controller="adminIndexCtrl" class="p-5">
     <h2 class="mb-4">Seller List for Approval</h2>
     <div class="mb-4 pb-4 mx-0">
         <div>
-            <button id="button-1" type="button" class="btn btn-secondary filter-btn me-3" onclick="filterListByCriteria(-1)">All</button>
-            <button id="button0" type="button" class="btn btn-secondary filter-btn me-3" onclick="filterListByCriteria(0)">Pending</button>
-            <button id="button1" type="button" class="btn btn-secondary filter-btn me-3" onclick="filterListByCriteria(1)">Approve</button>
-            <button id="button2" type="button" class="btn btn-secondary filter-btn" onclick="filterListByCriteria(2)">Reject</button>
+            <button id="button-1" type="button" class="btn btn-secondary filter-btn me-3" ng-click="filterListByCriteria(-1)">All</button>
+            <button id="button0" type="button" class="btn btn-secondary filter-btn me-3" ng-click="filterListByCriteria(0)">Pending</button>
+            <button id="button1" type="button" class="btn btn-secondary filter-btn me-3" ng-click="filterListByCriteria(1)">Approve</button>
+            <button id="button2" type="button" class="btn btn-secondary filter-btn" ng-click="filterListByCriteria(2)">Reject</button>
         </div>
     </div>
 
@@ -120,7 +41,25 @@
                 </th>
             </tr>
         </thead>
-        <tbody id="listBody" class="table-group-divider"></tbody>
+        <tbody class="table-group-divider">
+            <tr ng-repeat="item in filteredList" class="list-item">
+                <td>{{item.SellerFname}}</td>
+                <td>{{item.SellerLname}}</td>
+                <td>{{item.Address}}</td>
+                <td>{{item.PhoneNumber}}</td>
+                <td>{{statusMapping[item.Status]}}</td>
+                <td id="listItemAction' + i + '">
+                    <div ng-if="showActionButton">
+                        <button class="btn btn-success btn-sm rounded-circle me-3" type="button" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Approve`,' + $scope.filteredList[i].Id + ', ' + filterCriteria + ')">
+                            <i class="fa-solid fa-check" style="color: #ffffff;"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm rounded-circle" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Reject`,' + $scope.filteredList[i].Id + ', ' + filterCriteria + ')">
+                            <i class="fa-sharp fa-solid fa-xmark" style="color: #ffffff;"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
     </table>
 
     <!-- Modal -->

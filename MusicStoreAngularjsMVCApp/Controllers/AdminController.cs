@@ -12,15 +12,23 @@ namespace MusicStoreAngularjsMVCApp.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        MusicStoreAppEntities db = new MusicStoreAppEntities();
+        readonly MusicStoreAppEntities db = new MusicStoreAppEntities();
 
         // GET: Admin
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public JsonResult ApprovalList()
+        {
+            bool status;
+            string statusMessage;
+
             List<ApprovalList> approvalList = db.ApprovalLists.ToList();
             List<AdminIndexApprovalListViewModel> adminIndexApprovalList = new List<AdminIndexApprovalListViewModel>();
 
-            foreach(ApprovalList approvalListItem in approvalList)
+            foreach (ApprovalList approvalListItem in approvalList)
             {
                 adminIndexApprovalList.Add(new AdminIndexApprovalListViewModel
                 {
@@ -33,8 +41,15 @@ namespace MusicStoreAngularjsMVCApp.Controllers
                     Status = approvalListItem.Status
                 });
             }
+            status = true;
+            statusMessage = "Successfully retrive approval list";
 
-            return View(adminIndexApprovalList);
+            return Json(new
+            {
+                Status = status,
+                StatusMessage = statusMessage,
+                ApprovalList = adminIndexApprovalList
+            },JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Approve(int Id)

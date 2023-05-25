@@ -2373,6 +2373,7 @@
     <Content Include="Scripts\angular-chosen-1.4.0\test\support\karma.conf.js" />
     <Content Include="Scripts\angular-chosen-1.4.0\test\support\specHelper.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\admin\adminIndex.controller.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\customer\customerIndex.controller.js" />
     <Content Include="Scripts\app\customer\customerMovieDetail.controller.js" />
