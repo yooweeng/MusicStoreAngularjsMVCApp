@@ -6,7 +6,7 @@
     <script type="text/javascript" src="~/Scripts/app/customer/customerIndex.controller.js"></script>
 }
 
-<div ng-app="app" ng-controller="customerIndexCtrl" class="p-5 bg-secondary" style="min-height: 561px;">
+<div ng-controller="customerIndexCtrl" class="p-5 bg-secondary" style="min-height: 561px;">
     <h2>Movies / Products</h2>
     <div class="text-white mt-3 me-5">Filter:<i class="fa-solid fa-filter" style="color: #ffffff;"></i></div>
     <select multiple chosen ng-model="selectedGenreTypes" ng-options="genre.GenreType as genre.GenreType for genre in genres" ng-change="filteredMoviesBySelectedGenreTypes()" style="min-width: 280px;"></select>
