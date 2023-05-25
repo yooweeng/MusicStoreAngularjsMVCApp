@@ -83,5 +83,24 @@ namespace MusicStoreAngularjsMVCApp.Controllers
 
             return Json(new { Status = true, StatusMessage = "" });
         }
+
+        [HttpPost]
+        public JsonResult RemoveCarts(int movieId)
+        {
+            bool status = false;
+            string statusMessage = "Failed to remove item from the cart";
+
+            Cart cartItemByMovieId = db.Carts.Where(cart => cart.MovieId == movieId).FirstOrDefault();
+
+            if (cartItemByMovieId != null)
+            {
+                db.Carts.Remove(cartItemByMovieId);
+                db.SaveChanges();
+                status = true;
+                statusMessage = "Successfully remove item from the cart";
+            }
+
+            return Json(new { Status = status, StatusMessage = statusMessage });
+        }
     }
 }
