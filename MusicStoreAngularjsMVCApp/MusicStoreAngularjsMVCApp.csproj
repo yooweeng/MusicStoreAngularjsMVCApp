@@ -186,6 +186,7 @@
     </Compile>
     <Compile Include="Models\AddEditMovieViewModel.cs" />
     <Compile Include="Models\AdminIndexApprovalListViewModel.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\GenreViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -2473,6 +2474,7 @@
     <Content Include="Scripts\angular-chosen-1.4.0\package.json" />
     <Content Include="Scripts\angular-chosen-1.4.0\README.md" />
     <Content Include="Scripts\angular-chosen-1.4.0\src\chosen.coffee" />
+    <Content Include="Scripts\app\customer\customerCart.controller.js" />
     <None Include="Scripts\jquery-3.6.4.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.4.js" />
     <Content Include="Scripts\jquery-3.6.4.min.js" />
@@ -2517,6 +2519,7 @@
     <Content Include="Views\Account\Error.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\MovieDetail.cshtml" />
+    <Content Include="Views\Customer\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,10 +38,9 @@
     }
 
     $scope.addToCart = function () {
-        console.log(movieId);
         $http({
             method: 'POST',
-            url: '/Customer/Cart',
+            url: '/Customer/Carts',
             data: {
                 "MovieId": movieId
             }
