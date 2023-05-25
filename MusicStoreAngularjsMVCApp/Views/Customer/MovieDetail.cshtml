@@ -10,7 +10,7 @@
     <div>
         <h2>Movie Details{{id}}</h2>
         <div class="card shadow rounded-4 dl-horizontal mt-4 p-5">
-            <img src="{{ movie.ImageUrl }}" style="width: fit-content" />
+            <img ng-src="{{ movie.ImageUrl }}" style="width: fit-content" />
             <div class="mt-4 mb-3">
                 <h5 class="m-0">Genre</h5>
                 <span ng-repeat="genreType in movie.GenreTypes">
