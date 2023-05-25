@@ -34,12 +34,46 @@
                             View
                             <i class="fa-solid fa-book" style="color: #ffffff;"></i>
                         </a>
-                        <button class="btn btn-success" onclick="setCurrentSelectedMovie()" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
+                        <button class="btn btn-success" ng-click="setCurrentSelectedMovie(movie.Id)" data-bs-toggle="modal" data-bs-target="#confirmAddToCartModal">
                             Add to Cart
                             <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmAddToCartModal" tabindex="-1" aria-labelledby="confirmAddToCartModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmAddToCartModal">Confirm your action</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to add selected movie to cart?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a class="btn btn-success" ng-click="addToCart()">Yes, add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="text-success me-1">Successfully added to cart</strong>
+                <i class="fa-solid fa-cart-plus me-auto" style="color: #27750b;"></i>
+                <small>~5 sec ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Navigate to cart page to view the added movies
             </div>
         </div>
     </div>

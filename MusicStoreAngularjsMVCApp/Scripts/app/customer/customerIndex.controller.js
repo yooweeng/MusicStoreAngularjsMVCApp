@@ -1,6 +1,8 @@
 ﻿angular.module('app')
 
 .controller('customerIndexCtrl', ['$scope', '$http', function ($scope, $http) {
+    let movieId;
+
     $http({
         method: "GET",
         url: "/Movies"
@@ -30,4 +32,25 @@
             $scope.filteredMovies = filteredArr;
         }
     };
+
+    $scope.setCurrentSelectedMovie = function (id) {
+        movieId = id;
+    }
+
+    $scope.addToCart = function () {
+        console.log(movieId);
+        $http({
+            method: 'POST',
+            url: '/Customer/Cart',
+            data: {
+                "MovieId": movieId
+            }
+        })
+        .then(function success(response) {
+            bootstrap.Toast.getOrCreateInstance($('#liveToast')).show();
+            bootstrap.Modal.getInstance($('#confirmAddToCartModal')).hide();
+        }, function error(response) {
+            console.error(response.statusText);
+        });
+    }
 }]);

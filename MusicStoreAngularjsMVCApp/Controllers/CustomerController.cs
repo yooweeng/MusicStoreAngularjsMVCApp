@@ -1,4 +1,5 @@
-﻿using MusicStoreAngularjsMVCApp.Models;
+﻿using Microsoft.AspNet.Identity;
+using MusicStoreAngularjsMVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,22 @@ namespace MusicStoreAngularjsMVCApp.Controllers
         {
             ViewBag.Id = id;
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult Cart(int movieId)
+        {
+            int currentUserId = int.Parse(User.Identity.GetUserId());
+            int currentCustomerId = db.Customers.Where(customer => customer.UserId == currentUserId).First().CustomerId;
+
+            db.Carts.Add(new Cart()
+            {
+                MovieId = movieId,
+                CustomerId = currentCustomerId
+            });
+            db.SaveChanges();
+
+            return Json(new { Status = true, StatusMessage = "" });
         }
     }
 }
