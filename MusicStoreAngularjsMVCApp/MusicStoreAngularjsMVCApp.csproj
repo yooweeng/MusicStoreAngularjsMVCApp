@@ -2520,6 +2520,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\MovieDetail.cshtml" />
     <Content Include="Views\Customer\Cart.cshtml" />
+    <Content Include="Views\Customer\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

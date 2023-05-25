@@ -4,27 +4,6 @@
 
 @section Scripts{
     <script type="text/javascript" src="~/Scripts/app/customer/customerCart.controller.js"></script>
-    <script>
-        let selectedMovies = [];
-        let selectedMovieIds = [];
-        let total = 0;
-
-        function checkoutMovies() {
-            $.ajax({
-                url: '/Customer/Checkout',
-                type: 'post',
-                data: {
-                    selectedMovieIds: selectedMovieIds
-                },
-                success: function (data) {
-                    window.location.replace('/Customer/Checkout/'+data.OrderId);
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            })
-        }
-    </script>
 }
 
 <div ng-controller="customerCartCtrl" class="p-5 bg-secondary" style="min-height: 561px;">
@@ -116,7 +95,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a class="btn btn-warning" onclick="checkoutMovies()">Yes, proceed with checkout</a>
+                    <a class="btn btn-warning" ng-click="checkoutMovies()">Yes, proceed with checkout</a>
                 </div>
             </div>
         </div>

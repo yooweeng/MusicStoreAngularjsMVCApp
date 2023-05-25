@@ -13,6 +13,8 @@
             $scope.carts = orderBy(response.data.Carts, 'Movie.Seller.SellerId');
 
             let quantity = 1;
+            //for first item since loop maybe not be executed
+            $scope.carts[0].Movie.Quantity = quantity;
             for (let i = 0; i < $scope.carts.length - 1; i++) {
                 if ($scope.carts[i].Movie.Id == $scope.carts[i + 1].Movie.Id) {
                     quantity++;
@@ -27,7 +29,6 @@
                     quantity = 1;
                 }
             }
-            console.log($scope.carts)
         }, function error(response) {
             console.error(response.statusText);
         });
@@ -68,13 +69,14 @@
                 method: 'post',
                 data: {
                     "MovieId": movieId
-            }}).then(function success (data) {
-                    $window.location.reload();
-                },
-                function error (error) {
+                }
+            }).then(function success(data) {
+                $window.location.reload();
+            },
+                function error(error) {
                     console.error(error);
                 }
-            )
+            );
         }
 
         $scope.decreaseQuantity = function (movieId) {
@@ -90,6 +92,22 @@
                 function error(error) {
                     console.error(error);
                 }
-            )
+            );
+        }
+
+        $scope.checkoutMovies = function () {
+            $http({
+                url: '/Customer/Checkout',
+                method: 'post',
+                data: {
+                    selectedMovieIds: selectedMovieIds
+                }
+            }).then(function success(data) {
+                $window.location.replace('/Customer/Checkout/' + data.data.OrderId);
+            },
+                function error(error) {
+                    console.error(error);
+                }
+            );
         }
     }]);

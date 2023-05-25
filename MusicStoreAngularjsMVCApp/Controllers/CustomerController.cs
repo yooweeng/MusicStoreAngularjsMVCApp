@@ -102,5 +102,75 @@ namespace MusicStoreAngularjsMVCApp.Controllers
 
             return Json(new { Status = status, StatusMessage = statusMessage });
         }
+
+        public ActionResult Checkout(int id)
+        {
+            ViewBag.OrderId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Checkout(List<int> selectedMovieIds)
+        {
+            bool status = false;
+            string statusMessage = "Failed to checkout items from the cart";
+            int orderId = 0;
+
+            if (selectedMovieIds != null)
+            {
+                int currentUserId = int.Parse(User.Identity.GetUserId());
+                int currentCustomerId = db.Customers.Where(customer => customer.UserId == currentUserId).First().CustomerId;
+                int quantity;
+
+                List<Movie> moviesBySelectedMovieId = new List<Movie>();
+                Dictionary<int, Order> orderDict = new Dictionary<int, Order>();
+
+                // get list of movie by the movieId
+                foreach (int movieId in selectedMovieIds)
+                {
+                    Movie movie = db.Movies.Where(m => m.Id == movieId).Single();
+                    moviesBySelectedMovieId.Add(movie);
+                }
+                // group the list of movie by sellerid, number of group here represent number of unique seller
+                foreach (var group in moviesBySelectedMovieId.GroupBy(movie => movie.SellerId))
+                {
+                    // create new order
+                    Order order = db.Orders.Add(new Order() { Date = DateTime.Now, Status = "pending", CustomerId = currentCustomerId });
+                    // add the order to dictionary:
+                    // - sellerid (key)
+                    // - order (value)
+                    orderDict.Add(group.Key, order);
+                }
+                db.SaveChanges();
+
+                foreach (int movieId in selectedMovieIds)
+                {
+                    Movie movie = db.Movies.Where(m => m.Id == movieId).Single();
+                    List<Cart> cartItemsByMovieId = db.Carts.Where(cartItem => (cartItem.MovieId == movieId) &&
+                                                                                (cartItem.CustomerId == currentCustomerId)).ToList();
+                    quantity = cartItemsByMovieId.Count;
+
+                    // remove from cart
+                    foreach (Cart cartItem in cartItemsByMovieId)
+                    {
+                        db.Carts.Remove(cartItem);
+                    }
+
+                    OrderMovie orderMovie = db.OrderMovies.Add(new OrderMovie()
+                    {
+                        MovieId = movieId,
+                        UnitPrice = movie.Price,
+                        Quantity = quantity,
+                        Order = orderDict[movie.SellerId]
+                    });
+                    orderId = orderMovie.OrderId.HasValue ? orderMovie.OrderId.Value : 0;
+                }
+                db.SaveChanges();
+                status = true;
+                statusMessage = "Successfully checkout items from the cart";
+            }
+
+            return Json(new { Status = status, StatusMessage = statusMessage, OrderId = orderId });
+        }
     }
 }
