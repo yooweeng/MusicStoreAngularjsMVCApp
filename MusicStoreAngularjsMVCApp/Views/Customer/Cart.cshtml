@@ -41,51 +41,6 @@
             })
         }
 
-        function checkMovie(movieId, movieTitle, price, amount) {
-            if ($('#movie' + movieId).is(':checked')) {
-                selectedMovies.push({
-                    movieId: movieId,
-                    movieTitle: movieTitle,
-                    amount: amount
-                });
-                selectedMovieIds.push(movieId);
-                total += price * amount;
-                $('#totalPrice').html(total.toFixed(2));
-            }
-            else {
-                for (let i = 0; i < selectedMovies.length; i++) {
-                    if (JSON.stringify(selectedMovies[i]) == JSON.stringify({
-                        movieId: movieId,
-                        movieTitle: movieTitle,
-                        amount: amount
-                    })){
-                        selectedMovies.splice(i, 1);
-                    }
-                }
-
-                const index = selectedMovieIds.indexOf(movieId);
-                if (index > -1) {
-                    selectedMovieIds.splice(index, 1);
-                }
-
-                total -= price * amount;
-                $('#totalPrice').html(total.toFixed(2));
-            }
-
-            let list = '';
-
-            selectedMovies.forEach(selectedMovie => {
-                list += '<li>'+
-                            '<div class="d-flex justify-content-between">'+
-                                '<p>'+selectedMovie.movieTitle+'</p>'+
-                                '<p class="me-4">x'+selectedMovie.amount+'</p>'+
-                            '</div>'+
-                        '</li>'
-            });
-
-            $('#modal-body-ul').html(list);
-        }
-
         function checkoutMovies() {
             $.ajax({
                 url: '/Customer/Checkout',
@@ -116,25 +71,28 @@
                 <h6 ng-if="(carts[$index].Movie.Seller.SellerId != carts[$index-1].Movie.Seller.SellerId) || $first" class="border rounded bg-secondary mx-3 p-2">
                     {{cart.Movie.Seller.Fname}} {{cart.Movie.Seller.Lname}}
                 </h6>
-                <div ng-if="carts[$index].Movie.Id != carts[$index-1].Movie.Id || $first" class="card flex-grow-1 m-3">
-                    <div class="card-header">
-                        {{cart.Movie.MovieTitle}}
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex flex-column flex-sm-row justify-content-between">
-                            <img ng-src="{{cart.Movie.ImageUrl}}" width="200" />
-                            <div class="d-flex flex-column justify-content-between">
-                                <div class="d-flex">
-                                    <p class="card-text me-3">RM {{cart.Movie.Price}}</p>
-                                    <p class="card-text">x {{cart.Movie.Quantity}}</p>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-success btn-sm rounded-circle me-3" onclick="increaseQuantity(cart.Id)" type="button">
-                                        <i class="fa-solid fa-cart-plus fa-lg" style="color: #ffffff;"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-sm rounded-circle me-3" onclick="decreaseQuantity(cart.Id)" type="button">
-                                        <i class="fa-solid fa-cart-arrow-down fa-lg" style="color: #ffffff;"></i>
-                                    </button>
+                <div ng-if="carts[$index].Movie.Id != carts[$index-1].Movie.Id || $first" class="d-flex">
+                    <input ng-model="isSelectedMovie" ng-change="checkMovie(cart.Movie.Id, cart.Movie.MovieTitle, cart.Movie.Price, cart.Movie.Quantity, isSelectedMovie)" type="checkbox" />
+                    <div class="card flex-grow-1 m-3">
+                        <div class="card-header">
+                            {{cart.Movie.MovieTitle}}
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between">
+                                <img ng-src="{{cart.Movie.ImageUrl}}" width="200" />
+                                <div class="d-flex flex-column justify-content-between">
+                                    <div class="d-flex">
+                                        <p class="card-text me-3">RM {{cart.Movie.Price}}</p>
+                                        <p class="card-text">x {{cart.Movie.Quantity}}</p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button class="btn btn-success btn-sm rounded-circle me-3" onclick="increaseQuantity(cart.Id)" type="button">
+                                            <i class="fa-solid fa-cart-plus fa-lg" style="color: #ffffff;"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm rounded-circle me-3" onclick="decreaseQuantity(cart.Id)" type="button">
+                                            <i class="fa-solid fa-cart-arrow-down fa-lg" style="color: #ffffff;"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +109,7 @@
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <h5 class="me-5">Total(RM)</h5>
-                            <p id="totalPrice">0.00</p>
+                            <p>{{total | number : 2}}</p>
                         </div>
                     </div>
                     <div>
@@ -179,7 +137,14 @@
                 </div>
                 <div class="modal-body">
                     <p>Are you sure to checkout following items?</p>
-                    <ul id="modal-body-ul"></ul>
+                    <ul>
+                        <li ng-repeat="selectedMovie in selectedMovies">
+                            <div class="d-flex justify-content-between">
+                                <p>{{selectedMovie.movieTitle}}</p>
+                                <p class="me-4">x {{selectedMovie.quantity}}</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

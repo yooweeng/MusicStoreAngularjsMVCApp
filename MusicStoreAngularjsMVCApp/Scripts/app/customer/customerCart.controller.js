@@ -1,6 +1,11 @@
 ﻿angular.module('app')
 
-    .controller('customerCartCtrl', ['$scope', '$http', 'orderByFilter', function ($scope, $http, orderBy) {
+.controller('customerCartCtrl', ['$scope', '$http', 'orderByFilter', function ($scope, $http, orderBy) {
+    let selectedMovieIds = [];
+    $scope.total = 0;
+    $scope.selectedMovies = [];
+    $scope.isSelectedMovie = {};
+
     $http({
         method: "GET",
         url: "/Customer/Carts"
@@ -26,4 +31,34 @@
     }, function error(response) {
         console.error(response.statusText);
     });
+
+    $scope.checkMovie = function (movieId, movieTitle, price, quantity, isChecked) {
+        if (isChecked) {
+            $scope.selectedMovies.push({
+                movieId: movieId,
+                movieTitle: movieTitle,
+                quantity: quantity
+            });
+            selectedMovieIds.push(movieId);
+            $scope.total += price * quantity;
+        }
+        else {
+            for (let i = 0; i < $scope.selectedMovies.length; i++) {
+                if (JSON.stringify($scope.selectedMovies[i]) == JSON.stringify({
+                    movieId: movieId,
+                    movieTitle: movieTitle,
+                    quantity: quantity
+                })) {
+                    $scope.selectedMovies.splice(i, 1);
+                }
+            }
+
+            const index = selectedMovieIds.indexOf(movieId);
+            if (index > -1) {
+                selectedMovieIds.splice(index, 1);
+            }
+
+            $scope.total -= price * quantity;
+        }
+    }
 }]);
