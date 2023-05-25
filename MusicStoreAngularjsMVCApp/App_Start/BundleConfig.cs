@@ -47,6 +47,18 @@ namespace MusicStoreAngularjsMVCApp
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/Scripts/app/app.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/guestIndex").Include(
+                    "~/Scripts/app/guest/guestIndex.controller.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/customerIndex").Include(
+                    "~/Scripts/app/customer/customerIndex.controller.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/customerCart").Include(
+                    "~/Scripts/app/customer/customerCart.controller.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/customerMovieDetail").Include(
+                    "~/Scripts/app/customer/customerMovieDetail.controller.js"));
         }
     }
 }

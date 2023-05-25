@@ -3,7 +3,7 @@
 }
 
 @section Scripts{
-    <script type="text/javascript" src="~/Scripts/app/customer/customerMovieDetail.controller.js"></script>
+    @Scripts.Render("~/bundles/customerMovieDetail")
 }
 
 <div ng-controller="customerMovieDetailCtrl" class="p-5">
@@ -45,10 +45,6 @@
         </div>
         <div class="mt-4">
             <a href="/Customer" class="btn btn-secondary me-1">Back to Mainpage</a>
-            <button class="btn btn-success">
-                Add to Cart
-                <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
-            </button>
         </div>
     </div>
 </div>

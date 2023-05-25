@@ -3,7 +3,7 @@
 }
 
 @section Scripts{
-    <script type="text/javascript" src="~/Scripts/app/customer/customerCart.controller.js"></script>
+    @Scripts.Render("~/bundles/customerCart")
 }
 
 <div ng-controller="customerCartCtrl" class="p-5 bg-secondary" style="min-height: 561px;">
@@ -50,7 +50,7 @@
                 <div class="d-flex flex-column align-items-end">
                     <div class="d-flex flex-column mb-3">
                         <h5 class="me-5">Voucher</h5>
-                        <input class = "form-control text-secondary" type="text" placeholder="#LETSWATCH" ng-disabled="true"/>
+                        <input class="form-control text-secondary" type="text" placeholder="#LETSWATCH" ng-disabled="true" />
                         <div class="small">
                             Limited time promo code <span class="text-primary">#LETSWATCH</span>,<br />Enjoy all movie for FREE
                         </div>
