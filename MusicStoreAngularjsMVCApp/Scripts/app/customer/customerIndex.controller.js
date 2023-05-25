@@ -1,4 +1,4 @@
-﻿angular.module('app', ['localytics.directives'])
+﻿angular.module('app')
 
 .controller('customerIndexCtrl', ['$scope', '$http', function ($scope, $http) {
     $http({
