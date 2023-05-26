@@ -49,7 +49,8 @@
                 <td>{{item.PhoneNumber}}</td>
                 <td>{{statusMapping[item.Status]}}</td>
                 <td id="listItemAction' + i + '">
-                    <div ng-if="showActionButton">
+                    <!-- if status is pending show action button -->
+                    <div ng-if="item.Status == 0">
                         <button class="btn btn-success btn-sm rounded-circle me-3" type="button" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Approve`,' + $scope.filteredList[i].Id + ', ' + filterCriteria + ')">
                             <i class="fa-solid fa-check" style="color: #ffffff;"></i>
                         </button>

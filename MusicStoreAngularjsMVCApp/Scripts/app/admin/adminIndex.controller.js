@@ -14,14 +14,10 @@
         });
 
         $scope.filterListByCriteria = function (filterCriteria) {
-            $scope.showActionButton = false;
             $scope.filteredList = $scope.approvalList.filter(item => { return item.Status === filterCriteria });
 
             if (filterCriteria === -1) {
                 $scope.filteredList = $scope.approvalList;
-            }
-            else if (filterCriteria === 0) {
-                $scope.showActionButton = true;
             }
 
             $('.filter-btn')
