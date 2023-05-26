@@ -10,17 +10,17 @@
         $scope.btnColorShipping = "btn-secondary"
         $scope.btnColorDelivered = "btn-secondary"
 
-        if (orderStatus == 'pending') {
-            $scope.orderStatusTextColor = "text-success";
-            $scope.btnColorPending = "btn-warning"
-        }
-        else if (orderStatus == 'shipping') {
+        if (orderStatus == 'shipping') {
             $scope.orderStatusTextColor = "text-info";
             $scope.btnColorShipping = "btn-warning"
         }
+        else if (orderStatus == 'delivered') {
+            $scope.orderStatusTextColor = "text-success";
+            $scope.btnColorDelivered = "btn-warning"
+        }
         else {
             $scope.orderStatusTextColor = "text-warning";
-            $scope.btnColorDelivered = "btn-warning"
+            $scope.btnColorPending = "btn-warning"
         }
 
         $http({

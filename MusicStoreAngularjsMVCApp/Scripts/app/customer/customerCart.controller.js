@@ -21,14 +21,20 @@
 
                     //for last iteration
                     if (i == $scope.carts.length - 2) {
-                        $scope.carts[i].Movie.Quantity = quantity;
+                        $scope.carts[i - quantity + 2].Movie.Quantity = quantity;
                     }
                 }
                 else {
                     $scope.carts[i - quantity + 1].Movie.Quantity = quantity;
                     quantity = 1;
+
+                    //for last iteration
+                    if (i == $scope.carts.length - 2) {
+                        $scope.carts[i + 1].Movie.Quantity = 1;
+                    }
                 }
             }
+            console.log($scope.carts)
         }, function error(response) {
             console.error(response.statusText);
         });
