@@ -52,6 +52,7 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             },JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult Approve(int Id)
         {
             // update approval list status
@@ -81,6 +82,7 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             });
         }
 
+        [HttpPost]
         public JsonResult Reject(int Id)
         {
             ApprovalList approvalItemById = db.ApprovalLists.SingleOrDefault(item => item.Id == Id);

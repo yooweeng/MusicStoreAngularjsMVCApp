@@ -51,10 +51,10 @@
                 <td id="listItemAction' + i + '">
                     <!-- if status is pending show action button -->
                     <div ng-if="item.Status == 0">
-                        <button class="btn btn-success btn-sm rounded-circle me-3" type="button" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Approve`,' + $scope.filteredList[i].Id + ', ' + filterCriteria + ')">
+                        <button class="btn btn-success btn-sm rounded-circle me-3" type="button" data-bs-toggle="modal" data-bs-target="#confirmActionModal" ng-click="changeActionButtonInModal('Approve',item.Id)">
                             <i class="fa-solid fa-check" style="color: #ffffff;"></i>
                         </button>
-                        <button class="btn btn-danger btn-sm rounded-circle" data-bs-toggle="modal" data-bs-target="#confirmActionModal" onclick="changeActionButtonInModal(`Reject`,' + $scope.filteredList[i].Id + ', ' + filterCriteria + ')">
+                        <button class="btn btn-danger btn-sm rounded-circle" data-bs-toggle="modal" data-bs-target="#confirmActionModal" ng-click="changeActionButtonInModal('Reject',item.Id)">
                             <i class="fa-sharp fa-solid fa-xmark" style="color: #ffffff;"></i>
                         </button>
                     </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button id="actionButton" class="btn" data-bs-dismiss="modal">(Action)</button>
+                    <button ng-click="changeApprovalStatus()" id="actionButton" class="btn" data-bs-dismiss="modal">{{action}}</button>
                 </div>
             </div>
         </div>

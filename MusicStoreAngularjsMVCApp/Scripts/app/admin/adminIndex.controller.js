@@ -1,6 +1,7 @@
 ﻿angular.module('app')
 
-    .controller('adminIndexCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('adminIndexCtrl', ['$scope', '$http', '$window', function ($scope, $http, $window) {
+        let selectedApprovalItemId;
         $scope.statusMapping = ['Pending', 'Approve', 'Reject'];
 
         $http({
@@ -14,6 +15,7 @@
         });
 
         $scope.filterListByCriteria = function (filterCriteria) {
+            $scope.filterCriteria = filterCriteria;
             $scope.filteredList = $scope.approvalList.filter(item => { return item.Status === filterCriteria });
 
             if (filterCriteria === -1) {
@@ -28,26 +30,9 @@
                 .addClass('btn-dark');
         }
 
-        $scope.changeActionButtonInModal = function (action, id, filteredCriteria) {
-            $('#actionButton')
-                .html(action)
-                .off().on('click', () => {
-                    $.ajax({
-                        url: '/Admin/' + action + '/' + id,
-                        type: 'POST',
-                        success: function (data) {
-                            $scope.approvalList.forEach(item => {
-                                if (item.Id == id) {
-                                    item.Status = (action === 'Approve') ? 1 : 2;
-                                }
-                            });
-                            filterListByCriteria(filteredCriteria);
-                        },
-                        error: function (error) {
-                            console.error(error);
-                        }
-                    })
-                })
+        $scope.changeActionButtonInModal = function (action, id) {
+            $scope.action = action;
+            selectedApprovalItemId = id;
 
             if (action === 'Approve') {
                 $('#actionButton')
@@ -59,5 +44,18 @@
                     .addClass('btn-danger')
                     .removeClass('btn-success')
             }
+        }
+
+        $scope.changeApprovalStatus = function () {
+            $http({
+                method: "POST",
+                url: "/Admin/" + $scope.action + "/" + selectedApprovalItemId
+            }).then(function success(response) {
+                if (response.data.Status == true) {
+                    $window.location.reload();
+                }
+            }, function error(response) {
+                console.error(response.statusText);
+            });
         }
     }]);
