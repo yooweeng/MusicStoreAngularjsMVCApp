@@ -177,6 +177,7 @@
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\OrderHistoriesController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.tt</DependentUpon>
     </Compile>
@@ -2379,6 +2380,7 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\customer\customerIndex.controller.js" />
     <Content Include="Scripts\app\customer\customerMovieDetail.controller.js" />
+    <Content Include="Scripts\app\customer\customerOrderHistory.controller.js" />
     <Content Include="Scripts\app\guest\guestIndex.controller.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2527,6 +2529,8 @@
     <Content Include="Views\Customer\Checkout.cshtml" />
     <Content Include="Views\Admin\AddCategory.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Customer\Error.cshtml" />
+    <Content Include="Views\Customer\OrderHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

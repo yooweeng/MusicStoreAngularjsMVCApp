@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Order History";
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/customerOrderHistory")
+}
+
+<div ng-controller="customerOrderHistoryCtrl" class="p-5">
+    <h2 class="mb-3">Orders</h2>
+    <div class="mb-5">
+        <a href="/Customer/OrderHistory?orderStatus=pending" class="btn me-3 mb-1" ng-class="btnColorPending">Pending</a>
+        <a href="/Customer/OrderHistory?orderStatus=shipping" class="btn me-3 mb-1" ng-class="btnColorShipping">Shipping</a>
+        <a href="/Customer/OrderHistory?orderStatus=delivered" class="btn mb-1" ng-class="btnColorDelivered">Delivered</a>
+    </div>
+
+    <div ng-repeat="orderHistory in orderHistories"  class="card mb-4">
+        <div class="card-header">
+            <span class="fw-bold">Order ID: </span>
+            {{orderHistory.Orders[0].OrderId}}
+        </div>
+        <div class="card-body p-4">
+            <div class="card-text d-flex justify-content-between mb-3">
+                <div class="fw-bold">Order Placed On</div>
+                <div>{{orderHistory.Orders[0].OrderDate}}</div>
+            </div>
+            <div ng-repeat="order in orderHistory.Orders" class="d-flex flex-column flex-sm-row justify-content-between mb-3">
+                <img ng-src="{{order.MovieImageUrl}}" width="200" />
+                <div class="d-flex">
+                    <p class="card-text me-3">RM {{order.UnitPrice}}</p>
+                    <p class="card-text">x {{order.Quantity}}</p>
+                </div>
+            </div>
+            <div class="card-text d-flex justify-content-between">
+                <p class="fw-bold my-auto">Total</p>
+                <p>RM {{orderHistory.Total}}</p>
+            </div>
+            <div class="card-text d-flex justify-content-between">
+                <p class="fw-bold my-auto">Status</p>
+                <p ng-class="orderStatusTextColor" style="text-transform: capitalize" ;>{{orderHistory.Orders[0].OrderStatus}}</p>
+            </div>
+        </div>
+    </div>
+</div>

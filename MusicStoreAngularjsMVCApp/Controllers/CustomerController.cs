@@ -172,5 +172,10 @@ namespace MusicStoreAngularjsMVCApp.Controllers
 
             return Json(new { Status = status, StatusMessage = statusMessage, OrderId = orderId });
         }
+
+        public ActionResult OrderHistory()
+        {
+            return View();
+        }
     }
 }
