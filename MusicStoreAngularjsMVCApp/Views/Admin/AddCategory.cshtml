@@ -1,16 +1,18 @@
-﻿@model IEnumerable<MusicStoreAngularjsMVCApp.Genre>
-@{
+﻿@{
     ViewBag.Title = "Add Category";
 }
 
-<div class="p-5">
+@section Scripts{
+    @Scripts.Render("~/bundles/adminAddCategory")
+}
+
+<div ng-controller="adminAddCategoryCtrl" class="p-5">
     <h2>Add Category / Genre</h2>
-    @using (Html.BeginForm("Genre", "Admin", FormMethod.Post))
-    {
+    <form action="/Admin/Genre" method="post">
         <div class="container mt-5 mb-5 mx-0">
             <div class="row">
                 <div class="col-lg-2">
-                    @Html.TextBox("GenreType", null, new { @class = "form-control", placeholder = "eg. Action" })
+                    <input type="text" name="GenreType" class = "form-control" placeholder = "eg. Action" />
                 </div>
                 <div class="col-2 mt-2 mt-lg-0">
                     <button type="submit" class="btn btn-success">
@@ -20,11 +22,9 @@
             </div>
         </div>
         <h2>Category / Genre List</h2>
-        foreach (Genre item in @Model)
-        {
-            <div>
-                @item.GenreType
-            </div>
-        }
-    }
+        <div ng-repeat="genre in genres">
+            {{genre.GenreType}}
+        </div>
+    </form>
+
 </div>

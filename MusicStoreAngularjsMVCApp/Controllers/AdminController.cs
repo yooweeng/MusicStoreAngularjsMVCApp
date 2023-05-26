@@ -98,8 +98,7 @@ namespace MusicStoreAngularjsMVCApp.Controllers
 
         public ActionResult AddCategory()
         {
-            List<Genre> genres = db.Genres.ToList();
-            return View(genres);
+            return View();
         }
 
         [HttpPost]

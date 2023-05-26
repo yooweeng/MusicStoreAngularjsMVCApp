@@ -54,6 +54,9 @@ namespace MusicStoreAngularjsMVCApp
             bundles.Add(new ScriptBundle("~/bundles/adminIndex").Include(
                     "~/Scripts/app/admin/adminIndex.controller.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/adminAddCategory").Include(
+                    "~/Scripts/app/admin/adminAddCategory.controller.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/customerIndex").Include(
                     "~/Scripts/app/customer/customerIndex.controller.js"));
 

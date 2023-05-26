@@ -174,6 +174,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Customer.cs">
@@ -2373,6 +2374,7 @@
     <Content Include="Scripts\angular-chosen-1.4.0\test\support\karma.conf.js" />
     <Content Include="Scripts\angular-chosen-1.4.0\test\support\specHelper.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\admin\adminAddCategory.controller.js" />
     <Content Include="Scripts\app\admin\adminIndex.controller.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\customer\customerIndex.controller.js" />
