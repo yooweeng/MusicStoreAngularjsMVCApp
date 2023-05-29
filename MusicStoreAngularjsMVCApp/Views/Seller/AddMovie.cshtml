@@ -1,0 +1,98 @@
+﻿@model MusicStoreAngularjsMVCApp.Models.AddEditMovieViewModel
+
+@{
+    ViewBag.Title = "Add Movie";
+}
+
+<div class="p-5">
+    @using (Html.BeginForm("Movie", "Seller", FormMethod.Post, new { @class = "dropzone", id = "fileDropzone" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h3>Add Movie / Product</h3>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container-fluid mb-3 pt-4">
+            <div class="form-group row mb-3">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.Movie.MovieTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.EditorFor(m => m.Movie.MovieTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Movie.MovieTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.Movie.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.TextAreaFor(m => m.Movie.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Movie.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.Movie.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.EditorFor(m => m.Movie.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Movie.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <div class="col-4">
+                    @Html.Label("Genre", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.DropDownListFor(m => m.SelectedGenresId, new MultiSelectList(Model.Genres, "Id", "GenreType"), new { @class = "col-12 chosen-select", multiple = "multiple" })
+                </div>
+            </div>
+            <div class="form-group row mb-4">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.Movie.ReleasedYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-lg-3">
+                    @Html.EditorFor(m => m.Movie.ReleasedYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Movie.ReleasedYear, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" style="align-self: center;" value="Confirm Add Product / Movie" />
+                </div>
+            </div>
+            <div class="form-group row mb-4">
+                @Html.Label("Append Movie Cover", htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        Dropzone.options.fileDropzone = {
+            autoProcessQueue: false,
+            maxFiles: 1,
+
+            init: function () {
+                var myDropzone = this;
+
+                this.element.querySelector("input[type=button]").addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    myDropzone.processQueue();
+                });
+
+                this.on("success", function (files, response) {
+                    window.location.replace('/Seller');
+                });
+            }
+        };
+
+        $(document).ready(function () {
+            $("select").chosen();
+        });
+    </script>
+}
