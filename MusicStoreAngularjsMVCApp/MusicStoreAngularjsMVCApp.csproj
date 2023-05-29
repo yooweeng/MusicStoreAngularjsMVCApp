@@ -178,6 +178,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\OrderHistoriesController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>MusicStoreAngularjsMVCAppEntities.tt</DependentUpon>
     </Compile>
@@ -2531,6 +2532,11 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Customer\Error.cshtml" />
     <Content Include="Views\Customer\OrderHistory.cshtml" />
+    <Content Include="Views\Seller\AddMovie.cshtml" />
+    <Content Include="Views\Seller\Error.cshtml" />
+    <Content Include="Views\Seller\Index.cshtml" />
+    <Content Include="Views\Seller\MovieDetail.cshtml" />
+    <Content Include="Views\Seller\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
