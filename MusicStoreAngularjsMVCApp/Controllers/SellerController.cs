@@ -42,8 +42,8 @@ namespace MusicStoreAngularjsMVCApp.Controllers
 
                 if (movieByIdDb != null)
                 {
-                    var genresByMovieId = db.MovieGenres.Where(movieGenre => movieGenre.MovieId == movieByIdDb.Id)
-                                                    .Select(movieGenre => movieGenre.Genre.GenreType);
+                    var genreIdsByMovieId = db.MovieGenres.Where(movieGenre => movieGenre.MovieId == movieByIdDb.Id)
+                                                    .Select(movieGenre => movieGenre.GenreId);
 
                     var movieById = new
                     {
@@ -53,14 +53,18 @@ namespace MusicStoreAngularjsMVCApp.Controllers
                         movieByIdDb.ImageUrl,
                         movieByIdDb.Price,
                         movieByIdDb.ReleasedYear,
-                        Genres = genresByMovieId,
+                        GenreIds = genreIdsByMovieId,
                         Seller = new { 
                             movieByIdDb.Seller.Fname,
                             movieByIdDb.Seller.Lname
                         }
                     };
 
-                    var genres = db.Genres.Select(genre => genre.GenreType).ToList();
+                    var genres = db.Genres.Select(genre => new 
+                    { 
+                        genre.Id,
+                        genre.GenreType
+                    }).ToList();
 
                     status = true;
                     statusMessage = "Successfully retieve movie with respective id";
@@ -178,7 +182,7 @@ namespace MusicStoreAngularjsMVCApp.Controllers
                     db.MovieGenres.Remove(item);
                 }
                 // insert new genre
-                foreach(int selectedGenreId in selectedGenresId)
+                foreach (int selectedGenreId in selectedGenresId)
                 {
                     db.MovieGenres.Add(new MovieGenre() { MovieId = id, GenreId = selectedGenreId });
                 }

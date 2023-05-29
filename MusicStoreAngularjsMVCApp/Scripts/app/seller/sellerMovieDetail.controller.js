@@ -15,4 +15,24 @@
         }, function error(response) {
             console.error(response.statusText);
         });
+
+        $scope.updateMovie = function () {
+            $http({
+                method: "post",
+                url: "/Seller/EditMovie/" + id,
+                data: {
+                    movie: {
+                        MovieTitle: $scope.movie.MovieTitle,
+                        Description: $scope.movie.Description,
+                        Price: $scope.movie.Price,
+                        ReleasedYear: $scope.movie.ReleasedYear
+                    },
+                    selectedGenresId: $scope.movie.GenreIds
+                }
+            }).then(function success(response) {
+                $window.location.replace('/Seller');
+            }, function error(response) {
+                console.error(response.statusText);
+            });
+        }
     }]);

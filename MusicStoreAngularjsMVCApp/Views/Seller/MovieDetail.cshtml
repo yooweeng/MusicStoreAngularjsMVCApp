@@ -8,46 +8,47 @@
 
 <div ng-controller="sellerMovieDetailCtrl" class="p-5">
     <div>
-        <h2>Movie Details</h2>
-        <div class="card shadow rounded-4 dl-horizontal mt-4 p-5">
-            <img ng-src="{{movie.ImageUrl}}" style="width: fit-content" />
-            <div class="mt-4 mb-2">
-                <input type="hidden" id="id" name="id" value="movie.Id" />
-                <h5 class="m-0">Genre</h5>
-                <select chosen multiple ng-model="movie.Genres" class="col-12" name="SelectedGenresId">
-                    <option ng-repeat="genre in genres" value="{{genre}}">{{genre}}</option>
-                </select>
-            </div>
-            <div class="mb-2">
-                <h5 class="m-0">Title</h5>
-                <input ng-model="movie.MovieTitle" class="form-control" type="text" />
-            </div>
+        <form ng-submit="updateMovie()">
+            <h2>Movie Details</h2>
+            <div class="card shadow rounded-4 dl-horizontal mt-4 p-5">
+                <img ng-src="{{movie.ImageUrl}}" style="width: fit-content" />
+                <div class="mt-4 mb-2">
+                    <h5 class="m-0">Genre</h5>
+                    <select chosen multiple ng-model="movie.GenreIds" ng-options="genre.Id as genre.GenreType for genre in genres" class="col-12">
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <h5 class="m-0">Title</h5>
+                    <input ng-model="movie.MovieTitle" class="form-control" type="text" />
+                </div>
 
-            <div class="mb-2">
-                <h5 class="m-0">Description</h5>
-                <textarea ng-model="movie.Description" class="form-control" rows="3"></textarea>
-            </div>
+                <div class="mb-2">
+                    <h5 class="m-0">Description</h5>
+                    <textarea ng-model="movie.Description" class="form-control" rows="3"></textarea>
+                </div>
 
-            <div class="mb-2">
-                <h5 class="m-0">Price</h5>
-                <input ng-model="movie.Price" class="form-control" type="text" />
-            </div>
+                <div class="mb-2">
+                    <h5 class="m-0">Price</h5>
+                    <input ng-model="movie.Price" class="form-control" type="text" />
+                </div>
 
-            <div class="mb-2">
-                <h5 class="m-0">Released Year</h5>
-                <input ng-model="movie.ReleasedYear" class="form-control" type="text" />
-            </div>
+                <div class="mb-2">
+                    <h5 class="m-0">Released Year</h5>
+                    <input ng-model="movie.ReleasedYear" class="form-control" type="text" />
+                </div>
 
-            <div class="mb-3">
-                <h5 class="m-0">
-                    Seller
-                </h5>
-                {{movie.Seller.Fname}} {{movie.Seller.Lname}}
+                <div class="mb-3">
+                    <h5 class="m-0">
+                        Seller
+                    </h5>
+                    {{movie.Seller.Fname}} {{movie.Seller.Lname}}
+                </div>
+                <button class="btn btn-success me-1" style="width: fit-content;" type="submit">
+                    Update
+                </button>
             </div>
-            <button class="btn btn-success me-1" style="width: fit-content;" type="submit">
-                Update
-            </button>
-        </div>
+        </form>
+        
         <div class="mt-4">
             <a href="/Seller" class="btn btn-secondary me-1">Back to Mainpage</a>
         </div>
