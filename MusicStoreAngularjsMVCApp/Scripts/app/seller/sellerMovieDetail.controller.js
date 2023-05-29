@@ -11,6 +11,7 @@
             url: "/Seller/Movies/" + id
         }).then(function success(response) {
             $scope.movie = response.data.Movie;
+            $scope.genres = response.data.Genres;
         }, function error(response) {
             console.error(response.statusText);
         });
