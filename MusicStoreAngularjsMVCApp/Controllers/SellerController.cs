@@ -106,7 +106,7 @@ namespace MusicStoreAngularjsMVCApp.Controllers
         }
 
         [HttpPost]
-        public JsonResult Movies(Movie movie, List<int> selectedGenresId, HttpPostedFileBase file)
+        public JsonResult Movies(Movie movie, List<string> selectedGenresId, HttpPostedFileBase file)
         {
             int currentUserId = int.Parse(User.Identity.GetUserId());
             int currentSellerId = db.Sellers.Where(seller => seller.UserId == currentUserId).First().SellerId;
@@ -148,12 +148,12 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             insertedMovie.ImageUrl = folderDirectory + "/" + insertedMovie.Id.ToString() + "/" + filename;
 
             // insert into MovieGenre table
-            foreach (int genreId in selectedGenresId)
+            foreach (string genreId in selectedGenresId)
             {
                 db.MovieGenres.Add(new MovieGenre()
                 {
                     MovieId = insertedMovie.Id,
-                    GenreId = genreId
+                    GenreId = int.Parse(genreId)
                 });
             }
             db.SaveChanges();
@@ -209,14 +209,9 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             return Json(new { Status = true, StatusMessage = "Successfully remove movie record" });
         }
 
-
         public ActionResult AddMovie()
         {
-            List<Genre> genres = db.Genres.ToList();
-
-            AddEditMovieViewModel model = new AddEditMovieViewModel() { Genres = genres };
-
-            return View(model);
+            return View();
         }
 
         public ActionResult Order()

@@ -2383,6 +2383,7 @@
     <Content Include="Scripts\app\customer\customerMovieDetail.controller.js" />
     <Content Include="Scripts\app\customer\customerOrderHistory.controller.js" />
     <Content Include="Scripts\app\guest\guestIndex.controller.js" />
+    <Content Include="Scripts\app\seller\sellerAddMovie.controller.js" />
     <Content Include="Scripts\app\seller\sellerIndex.controller.js" />
     <Content Include="Scripts\app\seller\sellerMovieDetail.controller.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

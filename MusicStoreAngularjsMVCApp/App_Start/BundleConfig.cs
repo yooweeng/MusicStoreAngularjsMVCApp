@@ -74,6 +74,9 @@ namespace MusicStoreAngularjsMVCApp
 
             bundles.Add(new ScriptBundle("~/bundles/sellerMovieDetail").Include(
                     "~/Scripts/app/seller/sellerMovieDetail.controller.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/sellerAddMovie").Include(
+                    "~/Scripts/app/seller/sellerAddMovie.controller.js"));
         }
     }
 }
