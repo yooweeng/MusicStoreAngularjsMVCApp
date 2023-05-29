@@ -34,7 +34,6 @@
                     }
                 }
             }
-            console.log($scope.carts)
         }, function error(response) {
             console.error(response.statusText);
         });

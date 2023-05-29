@@ -9,9 +9,9 @@
 <div ng-controller="customerOrderHistoryCtrl" class="p-5">
     <h2 class="mb-3">Orders</h2>
     <div class="mb-5">
-        <a href="/Customer/OrderHistory?orderStatus=pending" class="btn me-3 mb-1" ng-class="btnColorPending">Pending</a>
-        <a href="/Customer/OrderHistory?orderStatus=shipping" class="btn me-3 mb-1" ng-class="btnColorShipping">Shipping</a>
-        <a href="/Customer/OrderHistory?orderStatus=delivered" class="btn mb-1" ng-class="btnColorDelivered">Delivered</a>
+        <button class="btn me-3 mb-1" ng-class="btnColorPending" ng-click="getOrderHistory('pending')">Pending</button>
+        <button class="btn me-3 mb-1" ng-class="btnColorShipping" ng-click="getOrderHistory('shipping')">Shipping</button>
+        <button class="btn mb-1" ng-class="btnColorDelivered" ng-click="getOrderHistory('delivered')">Delivered</button>
     </div>
 
     <div ng-repeat="orderHistory in orderHistories"  class="card mb-4">
