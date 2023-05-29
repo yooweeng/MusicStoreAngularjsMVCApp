@@ -18,12 +18,7 @@ namespace MusicStoreAngularjsMVCApp.Controllers
         // GET: Seller
         public ActionResult Index()
         {
-            int currentUserId = int.Parse(User.Identity.GetUserId());
-            int currentSellerId = db.Sellers.Where(seller => seller.UserId == currentUserId).First().SellerId;
-
-            List<Movie> moviesByCurrentSeller = db.Movies.Where(movie => movie.SellerId == currentSellerId).ToList();
-
-            return View(moviesByCurrentSeller);
+            return View();
         }
 
         public ActionResult MovieDetail(int id)
@@ -47,8 +42,38 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             return View("Error");
         }
 
+        [HttpGet]
+        public JsonResult Movies()
+        {
+            bool status = false;
+            string statusMessage = "Failed to retrive list of movie";
+
+            int currentUserId = int.Parse(User.Identity.GetUserId());
+            int currentSellerId = db.Sellers.Where(seller => seller.UserId == currentUserId).First().SellerId;
+
+            var moviesByCurrentSeller = db.Movies.Where(movie => movie.SellerId == currentSellerId)
+                                                 .Select(movie => new { 
+                                                     movie.Id,
+                                                     movie.MovieTitle,
+                                                     movie.Description,
+                                                     movie.ImageUrl,
+                                                     Genres = movie.MovieGenres.Select(movieGenre => movieGenre.Genre.GenreType)
+                                                 }).ToList();
+
+            status = true;
+            statusMessage = "Successfully retrive list of movie";
+
+            return Json(
+                new
+                {
+                    Status = status,
+                    StatusMessage = statusMessage,
+                    Movies = moviesByCurrentSeller
+                }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
-        public JsonResult Movie(Movie movie, List<int> selectedGenresId, HttpPostedFileBase file)
+        public JsonResult Movies(Movie movie, List<int> selectedGenresId, HttpPostedFileBase file)
         {
             int currentUserId = int.Parse(User.Identity.GetUserId());
             int currentSellerId = db.Sellers.Where(seller => seller.UserId == currentUserId).First().SellerId;
