@@ -21,44 +21,73 @@ namespace MusicStoreAngularjsMVCApp.Controllers
             return View();
         }
 
-        public ActionResult MovieDetail(int id)
+        public ActionResult MovieDetail()
         {
-            Movie movieById = db.Movies.Where(movie => movie.Id == id).SingleOrDefault();
-
-            if(movieById != null)
-            {
-                List<Genre> genres = db.Genres.ToList();
-                List<int> selectedGenresId = new List<int>();
-                List<MovieGenre> movieGenresById = db.MovieGenres.Where(item => item.MovieId == id).ToList();
-                foreach(MovieGenre movieGenre in movieGenresById)
-                {
-                    selectedGenresId.Add(movieGenre.GenreId);
-                }
-
-                AddEditMovieViewModel model = new AddEditMovieViewModel() { Movie = movieById, Genres = genres, SelectedGenresId = selectedGenresId };
-
-                return View(model);
-            }
-            return View("Error");
+            return View();
         }
 
         [HttpGet]
-        public JsonResult Movies()
+        public JsonResult Movies(int? id)
         {
             bool status = false;
             string statusMessage = "Failed to retrive list of movie";
 
+            // if id is passed in as parameter
+            if (id != null)
+            {
+                status = false;
+                statusMessage = "Failed to retieve movie with respective id";
+
+                Movie movieByIdDb = db.Movies.Where(movie => movie.Id == id).SingleOrDefault();
+
+                if (movieByIdDb != null)
+                {
+                    var genresByMovieId = db.MovieGenres.Where(movieGenre => movieGenre.MovieId == movieByIdDb.Id)
+                                                    .Select(movieGenre => movieGenre.Genre.GenreType);
+
+                    var movieById = new
+                    {
+                        movieByIdDb.Id,
+                        movieByIdDb.MovieTitle,
+                        movieByIdDb.Description,
+                        movieByIdDb.ImageUrl,
+                        movieByIdDb.Price,
+                        movieByIdDb.ReleasedYear,
+                        Genres = genresByMovieId,
+                        Seller = new { 
+                            movieByIdDb.Seller.Fname,
+                            movieByIdDb.Seller.Lname
+                        }
+                    };
+
+                    var genres = db.Genres.Select(genre => genre.GenreType).ToList();
+
+                    status = true;
+                    statusMessage = "Successfully retieve movie with respective id";
+
+                    return Json(
+                    new
+                    {
+                        Status = status,
+                        StatusMessage = statusMessage,
+                        Movie = movieById,
+                        Genres = genres
+                    }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            // only when no id is passed in
             int currentUserId = int.Parse(User.Identity.GetUserId());
             int currentSellerId = db.Sellers.Where(seller => seller.UserId == currentUserId).First().SellerId;
 
             var moviesByCurrentSeller = db.Movies.Where(movie => movie.SellerId == currentSellerId)
-                                                 .Select(movie => new { 
-                                                     movie.Id,
-                                                     movie.MovieTitle,
-                                                     movie.Description,
-                                                     movie.ImageUrl,
-                                                     Genres = movie.MovieGenres.Select(movieGenre => movieGenre.Genre.GenreType)
-                                                 }).ToList();
+                                                    .Select(movie => new { 
+                                                        movie.Id,
+                                                        movie.MovieTitle,
+                                                        movie.Description,
+                                                        movie.ImageUrl,
+                                                        Genres = movie.MovieGenres.Select(movieGenre => movieGenre.Genre.GenreType)
+                                                    }).ToList();
 
             status = true;
             statusMessage = "Successfully retrive list of movie";

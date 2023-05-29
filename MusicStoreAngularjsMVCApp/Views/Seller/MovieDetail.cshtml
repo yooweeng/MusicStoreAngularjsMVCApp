@@ -1,78 +1,55 @@
-﻿@model MusicStoreAngularjsMVCApp.Models.AddEditMovieViewModel
-
-@{
+﻿@{
     ViewBag.Title = "Movie Details";
 }
+
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $("select").chosen();
-        });
-    </script>
+    @Scripts.Render("~/bundles/sellerMovieDetail")
 }
 
-
-<div class="p-5">
+<div ng-controller="sellerMovieDetailCtrl" class="p-5">
     <div>
         <h2>Movie Details</h2>
-        @using (Html.BeginForm("EditMovie", "Seller", FormMethod.Post))
-        {
-            <div class="card shadow rounded-4 dl-horizontal mt-4 p-5">
-                <img src="@Model.Movie.ImageUrl" style="width: fit-content" />
-                <div class="mt-4 mb-2">
-                    <input type="hidden" id="id" name="id" value="@Model.Movie.Id" />
-                    <h5 class="m-0">Genre</h5>
-                    <select class="col-12 chosen-select" name="SelectedGenresId" multiple>
-                        @foreach (Genre genre in Model.Genres)
-                        {
-                            foreach (int selectedGenreId in Model.SelectedGenresId)
-                            {
-                                if (genre.Id == selectedGenreId)
-                                {
-                                    <option value="@genre.Id" selected>@genre.GenreType</option>
-                                }
-                                else
-                                {
-                                    <option value="@genre.Id">@genre.GenreType</option>
-                                }
-                            }
-                        }
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <h5 class="m-0">Title</h5>
-                    @Html.EditorFor(model => model.Movie.MovieTitle, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-
-                <div class="mb-2">
-                    <h5 class="m-0">@Html.DisplayNameFor(model => model.Movie.Description)</h5>
-                    @Html.EditorFor(model => model.Movie.Description, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-
-                <div class="mb-2">
-                    <h5 class="m-0">@Html.DisplayNameFor(model => model.Movie.Price)</h5>
-                    @Html.EditorFor(model => model.Movie.Price, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-
-                <div class="mb-2">
-                    <h5 class="m-0">Released Year</h5>
-                    @Html.EditorFor(model => model.Movie.ReleasedYear, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-
-                <div class="mb-3">
-                    <h5 class="m-0">
-                        @Html.DisplayNameFor(model => model.Movie.Seller)
-                    </h5>
-                    @Html.DisplayFor(model => model.Movie.Seller.Fname)
-                    @Html.DisplayFor(model => model.Movie.Seller.Lname)
-                </div>
-                <button class="btn btn-success me-1" style = "width: fit-content;" type="submit">
-                    Update
-                </button>
+        <div class="card shadow rounded-4 dl-horizontal mt-4 p-5">
+            <img ng-src="{{movie.ImageUrl}}" style="width: fit-content" />
+            <div class="mt-4 mb-2">
+                <input type="hidden" id="id" name="id" value="movie.Id" />
+                <h5 class="m-0">Genre</h5>
+                <select chosen multiple class="col-12 chosen-select" name="SelectedGenresId">
+                    <option selected>genre.GenreType</option>
+                </select>
             </div>
-            <div class="mt-4">
-                <a href="/Customer" class="btn btn-secondary me-1">Back to Mainpage</a>
+            <div class="mb-2">
+                <h5 class="m-0">Title</h5>
+                <input ng-model="movie.MovieTitle" class="form-control" type="text" />
             </div>
-        }
+
+            <div class="mb-2">
+                <h5 class="m-0">Description</h5>
+                <textarea ng-model="movie.Description" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="mb-2">
+                <h5 class="m-0">Price</h5>
+                <input ng-model="movie.Price" class="form-control" type="text" />
+            </div>
+
+            <div class="mb-2">
+                <h5 class="m-0">Released Year</h5>
+                <input ng-model="movie.ReleasedYear" class="form-control" type="text" />
+            </div>
+
+            <div class="mb-3">
+                <h5 class="m-0">
+                    Seller
+                </h5>
+                {{movie.Seller.Fname}} {{movie.Seller.Lname}}
+            </div>
+            <button class="btn btn-success me-1" style="width: fit-content;" type="submit">
+                Update
+            </button>
+        </div>
+        <div class="mt-4">
+            <a href="/Customer" class="btn btn-secondary me-1">Back to Mainpage</a>
+        </div>
     </div>
 </div>
