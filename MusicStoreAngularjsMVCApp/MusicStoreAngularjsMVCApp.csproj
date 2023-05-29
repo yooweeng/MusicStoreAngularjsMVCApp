@@ -177,6 +177,7 @@
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\OrderHistoriesController.cs" />
     <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Customer.cs">
@@ -2386,6 +2387,7 @@
     <Content Include="Scripts\app\seller\sellerAddMovie.controller.js" />
     <Content Include="Scripts\app\seller\sellerIndex.controller.js" />
     <Content Include="Scripts\app\seller\sellerMovieDetail.controller.js" />
+    <Content Include="Scripts\app\seller\sellerOrder.controller.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

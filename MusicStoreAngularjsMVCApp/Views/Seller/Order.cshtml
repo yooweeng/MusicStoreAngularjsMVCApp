@@ -1,75 +1,47 @@
-﻿@model IEnumerable<MusicStoreAngularjsMVCApp.OrderMovie>
-
-@{
+﻿@{
     ViewBag.Title = "Order";
 }
 
 @section Scripts{
-    <script>
-        function updateOrderStatus(id, orderStatus) {
-            $.ajax({
-                url: '/Seller/Order/'+id,
-                method: 'post',
-                data: {
-                    orderStatus: orderStatus
-                },
-                success: function (data) {
-                    window.location.reload();
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            });
-        }
-    </script>
+    @Scripts.Render("~/bundles/sellerOrder")
 }
 
-<div class="p-5">
+<div ng-controller="sellerOrderCtrl" class="p-5">
     <h2 class="mb-3">Orders</h2>
-
-    @foreach (var order in Model.GroupBy(model => model.Order))
-    {
-        double price = 0;
-
-        <div class="card mb-4">
+        <div ng-repeat="order in orders" class="card mb-4">
             <div class="card-header">
                 <span class="fw-bold">Order ID: </span>
-                @order.Key.Id
+                {{order.OrderId}}
             </div>
             <div class="card-body p-4">
                 <div class="card-text d-flex justify-content-between mb-3">
                     <div class="fw-bold">Order Placed On</div>
-                    <div>@order.Key.Date.Value.ToShortDateString()</div>
+                    <div>{{order.OrderDate}}</div>
                 </div>
-                @foreach (OrderMovie orderItem in order)
-                {
-                    <div class="d-flex flex-column flex-sm-row justify-content-between mb-3">
-                        <img src="@orderItem.Movie.ImageUrl" width="200" />
-                        <div class="d-flex">
-                            <p class="card-text me-3">RM @orderItem.UnitPrice</p>
-                            <p class="card-text">x @orderItem.Quantity</p>
-                        </div>
+                <div ng-repeat="item in order.OrderItems" class="d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <img ng-src="{{item.MovieImageUrl}}" width="200" />
+                    <div class="d-flex">
+                        <p class="card-text me-3">RM {{item.UnitPrice}}</p>
+                        <p class="card-text">x {{item.Quantity}}</p>
                     </div>
-                    price += orderItem.UnitPrice * orderItem.Quantity;
-                }
+                </div>
                 <div class="card-text d-flex justify-content-between">
                     <p class="fw-bold my-auto">Total</p>
-                    <p>RM @price</p>
+                    <p>RM {{order.Total}}</p>
                 </div>
                 <div class="card-text d-flex justify-content-between">
                     <p class="fw-bold my-auto">Status</p>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            @char.ToUpper(order.Key.Status[0])@order.Key.Status.Substring(1)
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-transform: capitalize;">
+                            {{order.OrderStatus}}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" onclick="updateOrderStatus(@order.Key.Id, 'pending')">Pending</a></li>
-                            <li><a class="dropdown-item" onclick="updateOrderStatus(@order.Key.Id, 'shipping')">Shipping</a></li>
-                            <li><a class="dropdown-item" onclick="updateOrderStatus(@order.Key.Id, 'delivered')">Delivered</a></li>
+                            <li><a class="dropdown-item" ng-click="updateOrderStatus(order.OrderId,'pending')">Pending</a></li>
+                            <li><a class="dropdown-item" ng-click="updateOrderStatus(order.OrderId,'shipping')">Shipping</a></li>
+                            <li><a class="dropdown-item" ng-click="updateOrderStatus(order.OrderId,'delivered')">Delivered</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    }
 </div>
