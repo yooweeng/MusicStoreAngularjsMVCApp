@@ -14,7 +14,7 @@
             <div class="mt-4 mb-2">
                 <input type="hidden" id="id" name="id" value="movie.Id" />
                 <h5 class="m-0">Genre</h5>
-                <select chosen multiple ng-model="movie.Genres" class="col-12 chosen-select" name="SelectedGenresId">
+                <select chosen multiple ng-model="movie.Genres" class="col-12" name="SelectedGenresId">
                     <option ng-repeat="genre in genres" value="{{genre}}">{{genre}}</option>
                 </select>
             </div>
