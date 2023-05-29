@@ -4,26 +4,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/sellerIndex")
-    <script>
-        let selectedId;
-
-        function modifySelectedId(id) {
-            selectedId = id;
-        }
-
-        function deleteMovie() {
-            $.ajax({
-                url: "/Seller/DeleteMovie/" + selectedId,
-                type: 'post',
-                success: function (data) {
-                    window.location.reload();
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            });
-        }
-    </script>
 }
 
 <div ng-controller="sellerIndexCtrl" class="p-5 bg-secondary" style="min-height: 561px;">
@@ -32,7 +12,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div ng-repeat="movie in movies" class="col-sm-7 col-md-4 col-lg-4 col-xxl-3 card bg-dark text-white rounded-5 m-5 p-4">
-                <img src={{movie.ImageUrl}} class="card-img-top rounded-3">
+                <img ng-src={{movie.ImageUrl}} class="card-img-top rounded-3">
                 <div class="card-body d-flex flex-column justify-content-between pb-0">
                     <div class="mb-4">
                         <p class="card-text">
@@ -51,7 +31,7 @@
                     </div>
                     <div class="d-flex justify-content-end">
                         <a href="/Seller/MovieDetail/{{movie.Id}}" class="btn btn-success me-3"><i class="fa-sharp fa-solid fa-pencil" style="color: #ffffff;"></i></a>
-                        <button class="btn btn-danger" onclick="modifySelectedId()" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal"><i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></button>
+                        <button class="btn btn-danger" ng-click="modifySelectedId(movie.Id)" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal"><i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></button>
                     </div>
                 </div>
             </div>
@@ -71,7 +51,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger" onclick="deleteMovie()">Yes, I confirm</a>
+                    <a class="btn btn-danger" ng-click="deleteMovie()">Yes, I confirm</a>
                 </div>
             </div>
         </div>
